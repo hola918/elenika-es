@@ -3,34 +3,134 @@
    Identidad según Manual de identidad visual v1.0 (julio 2026)
    ============================================================ */
 
-/* ---------- Fuentes autoalojadas ---------- */
+/* ---------- Fuentes autoalojadas: Poppins + Quicksand (sin CDN de terceros) ---------- */
 @font-face {
-  font-family: "Fraunces";
-  src: url("assets/fonts/fraunces.woff2") format("woff2");
-  font-weight: 300 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Fraunces";
-  src: url("assets/fonts/fraunces-italic.woff2") format("woff2");
-  font-weight: 300 700;
+  font-family: "Poppins";
   font-style: italic;
+  font-weight: 400;
   font-display: swap;
+  src: url("assets/fonts/poppins-400-italic-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
-  font-family: "DM Sans";
-  src: url("assets/fonts/dmsans.woff2") format("woff2");
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "DM Sans";
-  src: url("assets/fonts/dmsans-italic.woff2") format("woff2");
-  font-weight: 400 500;
+  font-family: "Poppins";
   font-style: italic;
+  font-weight: 400;
   font-display: swap;
+  src: url("assets/fonts/poppins-400-italic-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/poppins-400-normal-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/poppins-400-normal-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/poppins-500-normal-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/poppins-500-normal-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/fonts/poppins-600-normal-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/fonts/poppins-600-normal-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/fonts/poppins-700-normal-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/fonts/poppins-700-normal-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/quicksand-500-normal-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/quicksand-500-normal-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/fonts/quicksand-600-normal-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/fonts/quicksand-600-normal-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/fonts/quicksand-700-normal-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/fonts/quicksand-700-normal-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 /* ---------- Tokens de marca ---------- */
@@ -48,8 +148,8 @@
   --text: #2B2640;
   --text-2: #6B6586;
 
-  --font-display: "Fraunces", Georgia, serif;
-  --font-body: "DM Sans", Calibri, system-ui, sans-serif;
+  --font-display: "Quicksand", "Poppins", system-ui, sans-serif;
+  --font-body: "Poppins", Calibri, system-ui, sans-serif;
 
   --nav-h: 78px;
   --radius: 14px;
@@ -404,6 +504,42 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 .metodo-steps span { color: var(--text); font-size: 0.97rem; }
 
+/* Cierre de método */
+.metodo-cierre {
+  margin: 2rem 0 0;
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--naranja);
+  font-family: var(--font-display);
+  font-size: 1.22rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+/* Chips de temarios (centros) */
+.chips-lead {
+  font-weight: 600;
+  color: var(--text-2);
+  margin: 0 0 0.9rem;
+}
+.chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
+  padding: 0;
+}
+.chips li {
+  padding: 0.45em 1.05em;
+  border-radius: 999px;
+  background: var(--blanco);
+  border: 1px solid rgba(143, 160, 216, 0.55);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
 /* Cards */
 .cards-3 {
   display: grid;
@@ -588,9 +724,8 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   .grid-2--reverse .figure-editorial { order: 0; }
   .figure-editorial { max-width: 520px; }
   .cards-3 { grid-template-columns: 1fr 1fr; }
-}
 
-@media (max-width: 767px) {
+  /* Menú hamburguesa también en tablet: la etiqueta larga desbordaba el menú horizontal */
   .nav-links {
     position: fixed;
     top: var(--nav-h); left: 0; right: 0;
@@ -614,8 +749,6 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   .nav.nav--menu-open .nav-logo-dark { display: none; }
   .nav.nav--menu-open .nav-logo-light { display: block; }
 
-  .nav-cta { display: none; }
-
   .nav-burger {
     display: grid; gap: 6px;
     margin-left: auto;
@@ -631,6 +764,14 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   .nav--overhero .nav-burger span, .nav--menu-open .nav-burger span { color: var(--blanco); }
   .nav--menu-open .nav-burger span:first-child { transform: translateY(4px) rotate(45deg); }
   .nav--menu-open .nav-burger span:last-child { transform: translateY(-4px) rotate(-45deg); }
+
+  .nav-cta { margin-left: auto; }
+  .nav-burger { margin-left: 0; }
+}
+
+@media (max-width: 767px) {
+  .nav-cta { display: none; }
+  .nav-burger { margin-left: auto; }
 
   .cards-3 { grid-template-columns: 1fr; }
   .hero { padding-top: calc(var(--nav-h) + 2rem); }

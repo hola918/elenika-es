@@ -145,25 +145,30 @@
   }
 
   /* ---------- Count-up en las cifras del hero ---------- */
+  function fmtNum(n) {
+    // Separador de millar es-ES también en cifras de 4 dígitos (1.000)
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
   function initCountUp() {
     var els = document.querySelectorAll("[data-count]");
     if (!els.length) return;
     var animate = function (el) {
       var target = parseInt(el.dataset.count, 10) || 0;
-      if (reduced) { el.textContent = target.toLocaleString("es-ES"); return; }
+      if (reduced) { el.textContent = fmtNum(target); return; }
       var t0 = null;
       var dur = 1400;
       var step = function (t) {
         if (!t0) t0 = t;
         var p = Math.min((t - t0) / dur, 1);
         var eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(target * eased).toLocaleString("es-ES");
+        el.textContent = fmtNum(Math.round(target * eased));
         if (p < 1) requestAnimationFrame(step);
       };
       requestAnimationFrame(step);
     };
     if (!("IntersectionObserver" in window)) {
-      els.forEach(function (el) { el.textContent = (parseInt(el.dataset.count, 10) || 0).toLocaleString("es-ES"); });
+      els.forEach(function (el) { el.textContent = fmtNum(parseInt(el.dataset.count, 10) || 0); });
       return;
     }
     var io = new IntersectionObserver(function (entries) {
@@ -174,7 +179,7 @@
     els.forEach(function (el) { io.observe(el); });
     setTimeout(function () {
       els.forEach(function (el) {
-        if (!/\d\d/.test(el.textContent)) el.textContent = (parseInt(el.dataset.count, 10) || 0).toLocaleString("es-ES");
+        if (!/\d\d/.test(el.textContent)) el.textContent = fmtNum(parseInt(el.dataset.count, 10) || 0);
       });
     }, 6000);
   }
