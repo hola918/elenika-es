@@ -778,3 +778,33 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   .hero-stats { gap: 1.2rem 2rem; }
   .contact-list li { grid-template-columns: 1fr; gap: 0.15rem; }
 }
+
+/* ---------- Burbuja flotante de WhatsApp ---------- */
+.whatsapp-fab {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 900;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 18px rgba(11, 8, 41, 0.28);
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s;
+}
+.whatsapp-fab:hover,
+.whatsapp-fab:focus-visible {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 26px rgba(11, 8, 41, 0.34);
+}
+.whatsapp-fab svg {
+  width: 30px;
+  height: 30px;
+  fill: #FFFFFF;
+}
+@media (max-width: 767px) {
+  .whatsapp-fab { width: 52px; height: 52px; right: 14px; bottom: 14px; }
+  .whatsapp-fab svg { width: 28px; height: 28px; }
+}
