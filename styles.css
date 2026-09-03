@@ -435,13 +435,8 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 .figure-editorial img { width: 100%; object-fit: cover; }
 
-/* Grado común y sutil para la fotografía documental (biblioteca cálida, oficina fría,
-   aula neutra) para que se lean como un mismo reportaje. El hero queda fuera: su
-   duotono frío es un contrapunto deliberado. El panel de marca también queda fuera. */
-.figure-editorial:not(.brand-panel) > img,
-.figure-wide > img {
-  filter: saturate(0.9) contrast(1.03);
-}
+/* La fotografía va en su color original, sin filtro CSS (decisión de Elena, 3 sep 2026).
+   El hero mantiene su duotono frío. */
 
 /* Panel de marca (sección método) */
 .brand-panel {
