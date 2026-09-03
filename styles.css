@@ -136,6 +136,10 @@
 /* ---------- Tokens de marca ---------- */
 :root {
   --naranja: #FF8400;
+  /* Naranja para TEXTO sobre fondo claro: el #FF8400 sobre crema da 2,3:1 y no pasa
+     WCAG AA. Esta versión más profunda pasa AA sobre crema, blanco y amande.
+     El #FF8400 se reserva para rellenos (botones, filetes, acentos sobre navy). */
+  --naranja-texto: #A64D0A;
   --vista-bleu: #8FA0D8;
   --amande: #F9DFC6;
   --bleu-oxford: #0B0829;
@@ -163,6 +167,8 @@
   --ink: var(--amande);
   --text: var(--blanco);
   --text-2: var(--vista-bleu);
+  /* Sobre navy el naranja de marca ya contrasta de sobra: se recupera el brillante. */
+  --naranja-texto: var(--naranja);
 }
 
 /* ---------- Base ---------- */
@@ -194,15 +200,17 @@ h1, h2, h3 {
   font-family: var(--font-display);
   font-optical-sizing: auto;
   color: var(--ink);
-  font-weight: 560;
+  font-weight: 600;
   line-height: 1.08;
   margin: 0 0 0.6em;
   text-wrap: balance;
 }
-h1 em, h2 em { font-style: italic; font-weight: 540; }
+/* Énfasis: cursiva + un peso más ligero (Quicksand 500, autoalojada) para que la palabra
+   destacada respire en lugar de competir con el resto del titular. */
+h1 em, h2 em { font-style: italic; font-weight: 500; }
 
 p { margin: 0 0 1.1em; }
-a { color: var(--naranja); text-decoration: none; }
+a { color: var(--naranja-texto); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .container {
@@ -268,7 +276,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   font-weight: 500; font-size: 0.95rem;
   transition: color 0.25s;
 }
-.nav-links a:hover { color: var(--naranja); text-decoration: none; }
+.nav-links a:hover { color: var(--naranja-texto); text-decoration: none; }
 
 .nav-burger { display: none; }
 
@@ -301,7 +309,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   position: relative;
 }
 .link-arrow::after { content: " →"; transition: margin-left 0.25s var(--ease-out); }
-.link-arrow:hover { color: var(--naranja); text-decoration: none; }
+.link-arrow:hover { color: var(--naranja-texto); text-decoration: none; }
 .link-arrow:hover::after { margin-left: 5px; }
 
 /* ---------- Kicker ---------- */
@@ -310,8 +318,9 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--naranja);
+  color: var(--naranja-texto);
   margin-bottom: 1.1rem;
+  text-wrap: balance;
 }
 
 /* ---------- Hero ---------- */
@@ -344,7 +353,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   position: relative;
 }
 .hero-title {
-  font-size: clamp(2.3rem, 5.2vw, 4.3rem);
+  font-size: clamp(2rem, 5.2vw, 4.3rem);
   max-width: 16ch;
   margin-bottom: 0.5em;
 }
@@ -426,6 +435,14 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 .figure-editorial img { width: 100%; object-fit: cover; }
 
+/* Grado común y sutil para la fotografía documental (biblioteca cálida, oficina fría,
+   aula neutra) para que se lean como un mismo reportaje. El hero queda fuera: su
+   duotono frío es un contrapunto deliberado. El panel de marca también queda fuera. */
+.figure-editorial:not(.brand-panel) > img,
+.figure-wide > img {
+  filter: saturate(0.9) contrast(1.03);
+}
+
 /* Panel de marca (sección método) */
 .brand-panel {
   aspect-ratio: 832 / 1100;
@@ -495,7 +512,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   font-family: var(--font-display);
   font-style: italic;
   font-size: 1.7rem;
-  color: var(--naranja);
+  color: var(--naranja-texto);
 }
 .metodo-steps strong {
   font-family: var(--font-display);
@@ -508,7 +525,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .metodo-cierre {
   margin: 2rem 0 0;
   padding-left: 1.1rem;
-  border-left: 3px solid var(--naranja);
+  border-left: 3px solid var(--naranja-texto);
   font-family: var(--font-display);
   font-size: 1.22rem;
   font-weight: 600;
@@ -579,8 +596,8 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   content: "";
   position: absolute; left: 0; top: 0.42em;
   width: 0.95em; height: 0.55em;
-  border-left: 3px solid var(--naranja);
-  border-bottom: 3px solid var(--naranja);
+  border-left: 3px solid var(--naranja-texto);
+  border-bottom: 3px solid var(--naranja-texto);
   transform: rotate(-45deg);
 }
 
@@ -609,9 +626,16 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   color: var(--ink);
   flex: 1;
 }
-.testimonio p::before { content: "« "; color: var(--naranja); }
-.testimonio p::after { content: " »"; color: var(--naranja); }
+.testimonio p::before { content: "« "; color: var(--naranja-texto); }
+.testimonio p::after { content: " »"; color: var(--naranja-texto); }
 .testimonio footer { font-size: 0.88rem; color: var(--text-2); font-weight: 600; }
+
+/* 5 testimonios: rejilla de 6 columnas para que la última fila (2 tarjetas)
+   ocupe el ancho completo en 3+3 en vez de dejar un hueco. */
+.testimonios { grid-template-columns: repeat(6, 1fr); }
+.testimonios > .testimonio { grid-column: span 2; }
+.testimonios > .testimonio:nth-child(4),
+.testimonios > .testimonio:nth-child(5) { grid-column: span 3; }
 
 /* Programa destacado */
 .section-programa {
@@ -630,8 +654,30 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .section-programa .container { position: relative; }
 .programa-title {
   font-size: clamp(2.2rem, 5vw, 3.8rem);
-  max-width: 16ch;
+  max-width: 24ch;
   margin-inline: auto;
+}
+/* Filete firma: el mismo subrayado naranja del hero, centrado bajo el título. */
+.programa-title::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 3px;
+  margin: 1rem auto 0;
+  background: linear-gradient(90deg, rgba(255, 132, 0, 0), var(--naranja), rgba(255, 132, 0, 0));
+}
+/* Línea de datos del programa: ancla el bloque sin caer en el patrón de métricas. */
+.programa-spec {
+  margin: 1.4rem 0 1.6rem;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+.programa-spec span:not(:last-child)::after {
+  content: " · ";
+  color: var(--naranja);
+  font-weight: 700;
 }
 .programa-sub {
   max-width: 56ch;
@@ -667,9 +713,9 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   font-weight: 700;
   color: var(--text-2);
 }
-.contact-list span svg { flex: none; color: var(--naranja); }
+.contact-list span svg { flex: none; color: var(--naranja-texto); }
 .contact-list a { font-weight: 600; color: var(--ink); overflow-wrap: anywhere; }
-.contact-list a:hover { color: var(--naranja); text-decoration: none; }
+.contact-list a:hover { color: var(--naranja-texto); text-decoration: none; }
 
 /* ---------- Footer ---------- */
 .footer {
@@ -683,7 +729,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .footer-tagline { color: var(--text-2); font-size: 0.95rem; margin: 0; }
 .footer-legal { display: flex; gap: 1.6rem; flex-wrap: wrap; justify-content: center; }
 .footer-legal a { color: var(--amande); font-size: 0.88rem; opacity: 0.85; }
-.footer-legal a:hover { color: var(--naranja); opacity: 1; text-decoration: none; }
+.footer-legal a:hover { color: var(--naranja-texto); opacity: 1; text-decoration: none; }
 .footer-copy { color: var(--text-2); font-size: 0.85rem; margin: 0.4rem 0 0; }
 
 /* ---------- Reveal on scroll ---------- */
@@ -724,6 +770,17 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   .grid-2--reverse .figure-editorial { order: 0; }
   .figure-editorial { max-width: 520px; }
   .cards-3 { grid-template-columns: 1fr 1fr; }
+
+  /* En móvil/tablet el texto lidera; el panel de marca pasa debajo y deja de ser
+     un bloque navy enorme antes de leer nada. */
+  .section-metodo .grid-2 .brand-panel { order: 2; }
+  .brand-panel { aspect-ratio: 16 / 9; }
+
+  /* Testimonios: se anula el tramado de 6 columnas del escritorio. */
+  .testimonios { grid-template-columns: 1fr 1fr; }
+  .testimonios > .testimonio,
+  .testimonios > .testimonio:nth-child(4),
+  .testimonios > .testimonio:nth-child(5) { grid-column: auto; }
 
   /* Menú hamburguesa también en tablet: la etiqueta larga desbordaba el menú horizontal */
   .nav-links {
@@ -774,9 +831,15 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   .nav-burger { margin-left: auto; }
 
   .cards-3 { grid-template-columns: 1fr; }
-  .hero { padding-top: calc(var(--nav-h) + 2rem); }
-  .hero-stats { gap: 1.2rem 2rem; }
+  .hero { padding-top: calc(var(--nav-h) + 2rem); padding-bottom: 5.5rem; }
+  .hero-stats { gap: 1.2rem 2rem; margin-top: 2.25rem; }
   .contact-list li { grid-template-columns: 1fr; gap: 0.15rem; }
+
+  /* La etiqueta larga del hero cabe mejor con menos cuerpo y menos tracking. */
+  .kicker { font-size: 0.72rem; letter-spacing: 0.08em; }
+
+  /* Panel de marca: banner corto en móvil, no un muro navy. */
+  .brand-panel { aspect-ratio: 3 / 2; gap: 1.4rem; }
 }
 
 /* ---------- Burbuja flotante de WhatsApp ---------- */

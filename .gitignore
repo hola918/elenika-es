@@ -1,3 +1,10 @@
 .DS_Store
 assets/photos/
 assets/img/elenika11.png
+
+# Contexto interno de producto (no publicar en el repo público)
+PRODUCT.md
+
+# Sistema de diseño (impeccable) — local, no publicar
+DESIGN.md
+.impeccable/

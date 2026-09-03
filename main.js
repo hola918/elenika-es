@@ -14,10 +14,17 @@
   function initSplash() {
     var splash = document.querySelector("[data-splash]");
     if (!splash) return;
+
+    /* Se salta el splash cuando no aporta nada: al volver de otra página del propio
+       sitio (aviso legal, privacidad, cookies) o con prefers-reduced-motion.
+       No usa cookies ni almacenamiento: solo mira de dónde viene la navegación. */
+    var fromSameSite = document.referrer && document.referrer.indexOf(location.origin + "/") === 0;
+    if (reduced || fromSameSite) { splash.remove(); return; }
+
     var hide = function () { splash.classList.add("is-out"); };
-    if (document.readyState === "complete") setTimeout(hide, 500);
-    else window.addEventListener("load", function () { setTimeout(hide, 350); });
-    setTimeout(hide, 4000); // seguridad adicional (CSS ya cubre 4,5 s)
+    if (document.readyState === "complete") setTimeout(hide, 400);
+    else window.addEventListener("load", function () { setTimeout(hide, 300); });
+    setTimeout(hide, 3500); // seguridad adicional (el CSS cubre 4,5 s)
   }
 
   /* ---------- Nav: transparente sobre hero, sólida al hacer scroll ---------- */
@@ -63,10 +70,54 @@
         top: el.getBoundingClientRect().top + window.scrollY - 82,
         behavior: reduced ? "auto" : "smooth"
       });
+      // El salto puede adelantar al IntersectionObserver: fuerza el reveal de la
+      // sección de destino durante el recorrido del scroll suave.
+      if (typeof flushWideBurst === "function") flushWideBurst();
     });
   }
 
-  /* ---------- Reveal on scroll (IO umbral bajo + red a los 6 s) ---------- */
+  /* ---------- Flush compartido: revela lo que ya está en viewport ----------
+     Red de seguridad continua. El IntersectionObserver puede no emitir entrada cuando
+     un elemento cruza el viewport entre dos frames (scroll rápido, salto de ancla,
+     restauración de la posición de scroll al volver atrás). Este flush lo cubre.
+       - normal  (scroll/resize): margen conservador; deja que el IO haga la entrada
+         con su timing y solo rescata lo que se le escapa.
+       - amplio  (saltos de ancla, carga, hashchange): revela TODO lo que hay en
+         pantalla de golpe, para que un salto nunca deje una banda visible en blanco. */
+  function flushInView(wide) {
+    var limit = window.innerHeight * (wide ? 1.1 : 0.9);
+    document.querySelectorAll(".reveal:not(.is-visible)").forEach(function (el) {
+      if (el.getBoundingClientRect().top < limit) el.classList.add("is-visible");
+    });
+    document.querySelectorAll("[data-split]:not(.is-split-visible)").forEach(function (el) {
+      if (el.getBoundingClientRect().top < limit) el.classList.add("is-split-visible");
+    });
+  }
+
+  var flushScheduled = false;
+  function scheduleFlush() {
+    if (flushScheduled) return;
+    flushScheduled = true;
+    requestAnimationFrame(function () { flushScheduled = false; flushInView(false); });
+  }
+
+  // Tras un salto de ancla el scroll suave dura ~1 s: barre varias veces en ese tramo.
+  function flushWideBurst() {
+    [0, 120, 300, 600, 1000].forEach(function (t) {
+      setTimeout(function () { flushInView(true); }, t);
+    });
+  }
+
+  function initFlushSafetyNet() {
+    window.addEventListener("scroll", scheduleFlush, { passive: true });
+    window.addEventListener("resize", scheduleFlush, { passive: true });
+    window.addEventListener("hashchange", flushWideBurst);
+    window.addEventListener("load", function () { flushInView(true); });
+    // Barridos tempranos por si el scroll inicial no dispara ningún evento.
+    [200, 800, 2000].forEach(function (t) { setTimeout(function () { flushInView(true); }, t); });
+  }
+
+  /* ---------- Reveal on scroll (IO umbral bajo + flush continuo) ---------- */
   function initReveals() {
     var targets = document.querySelectorAll(".reveal:not([data-split])");
     if (!("IntersectionObserver" in window)) {
@@ -82,15 +133,6 @@
       });
     }, { threshold: 0.01, rootMargin: "0px 0px -2% 0px" });
     targets.forEach(function (el) { io.observe(el); });
-
-    // Red de seguridad: a los 6 s, revela lo que siga oculto en viewport
-    setTimeout(function () {
-      document.querySelectorAll(".reveal:not(.is-visible)").forEach(function (el) {
-        if (el.getBoundingClientRect().top < window.innerHeight) {
-          el.classList.add("is-visible");
-        }
-      });
-    }, 6000);
   }
 
   /* ---------- Split words (preserva <br> y <em>) ---------- */
@@ -138,9 +180,6 @@
         });
       }, { threshold: 0.01 });
       io.observe(el);
-      setTimeout(function () {
-        if (el.getBoundingClientRect().top < window.innerHeight) show();
-      }, 6000);
     });
   }
 
@@ -230,6 +269,7 @@
     safe(initSmoothAnchors, "initSmoothAnchors");
     safe(initSplitText, "initSplitText");
     safe(initReveals, "initReveals");
+    safe(initFlushSafetyNet, "initFlushSafetyNet");
     safe(initCountUp, "initCountUp");
     safe(initParallax, "initParallax");
     safe(initMagnetic, "initMagnetic");
